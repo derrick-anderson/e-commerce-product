@@ -5,7 +5,6 @@ import com.solstice.ecommerceproduct.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -67,7 +66,7 @@ public class ProductServiceUnitTests {
 
     @Test
     public void getAllProducts_HappyPath(){
-        when(productRepository.findAll()).thenReturn(getMockProductLis());
+        when(productRepository.findAll()).thenReturn(getMockProductList());
 
         List<Product> foundProducts = productServices.getAllProducts();
         assertThat(foundProducts.size(), is(5));
@@ -105,7 +104,7 @@ public class ProductServiceUnitTests {
         return mockProduct;
     }
 
-    private List<Product> getMockProductLis() {
+    private List<Product> getMockProductList() {
         return new ArrayList<Product>(){{
             add(getMockProduct(11L));
             add(getMockProduct(12L));
