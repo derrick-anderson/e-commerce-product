@@ -1,6 +1,5 @@
 package com.solstice.ecommerceproduct.controller;
 
-import com.solstice.ecommerceproduct.data.ProductRepository;
 import com.solstice.ecommerceproduct.domain.Product;
 import com.solstice.ecommerceproduct.service.ProductServices;
 import org.springframework.http.HttpStatus;
