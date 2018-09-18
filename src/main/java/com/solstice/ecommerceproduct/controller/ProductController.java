@@ -34,12 +34,12 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public Product saveProduct(Product productIn){
+    public Product saveProduct(@RequestBody Product productIn){
         return productServices.saveProduct(productIn);
     }
 
     @PutMapping("/products/{productId}")
-    public Product updateProduct(@PathVariable("productId") Long productId, Product productToSave){
+    public Product updateProduct(@PathVariable("productId") Long productId, @RequestBody Product productToSave){
         return productServices.updateProduct(productId, productToSave);
     }
 }
