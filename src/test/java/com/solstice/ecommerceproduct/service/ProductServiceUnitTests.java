@@ -5,6 +5,7 @@ import com.solstice.ecommerceproduct.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -53,7 +55,7 @@ public class ProductServiceUnitTests {
 
     @Test
     public void getOneProduct_HappyPath(){
-        when(productRepository.getOne(anyLong())).thenReturn(getMockProduct(15L));
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(getMockProduct(15L)));
 
         Product foundProduct = productServices.getOneProduct(15L);
 
@@ -79,7 +81,7 @@ public class ProductServiceUnitTests {
 
     @Test
     public void deleteProduct_HappyPath(){
-        when(productRepository.getOne(15L)).thenReturn(getMockProduct(15L));
+        when(productRepository.findById(15L)).thenReturn(Optional.of(getMockProduct(15L)));
         productServices.deleteProduct(15L);
 
         verify(productRepository, times(1)).deleteById(15L);
@@ -87,7 +89,7 @@ public class ProductServiceUnitTests {
 
     @Test
     public void updateProduct_HappyPath(){
-        when(productRepository.getOne(15L)).thenReturn(getMockProduct(15L));
+        when(productRepository.findById(15L)).thenReturn(Optional.of(getMockProduct(15L)));
         Product productUpdateData = new Product("Theodore Bonkers", null, null, BigDecimal.ZERO);
         Product updatedProduct = productServices.updateProduct(15L, productUpdateData);
 
