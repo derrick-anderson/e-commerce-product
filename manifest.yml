@@ -1,11 +1,15 @@
 ---
 applications:
 -  name: e-commerce-product
-   path: build/lib
+   path: build/libs/e-commerce-product-0.0.1-SNAPSHOT.jar
    buildpack: java_buildpack
    disk_quota: 512M
    memory: 512M
    routes:
-     - route: e-commerce-product-deanderson.cfapps.io
+      - route: e-commerce-product-deanderson.cfapps.io
+   services:
+      - e-commerce-product-db
+      - e-commerce-service-registry
+      - e-commerce-hystrix-dashboard
    env:
       JAVA_OPTS: '-Xss256K  -Xmx256m -Dserver.tomcat.max-threads=3 -Dspring.datasource.hikari.maximum-pool-size=2'
