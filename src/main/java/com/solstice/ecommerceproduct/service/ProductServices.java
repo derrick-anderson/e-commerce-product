@@ -24,7 +24,7 @@ public class ProductServices {
     }
 
     public Product getOneProduct(Long productId) {
-        return productRepository.getOne(productId);
+        return productRepository.findById(productId).get();
     }
 
     public List<Product> getAllProducts() {
@@ -38,7 +38,7 @@ public class ProductServices {
     }
 
     public Product updateProduct(Long productId, Product productUpdateData) {
-        Product savedProduct = getOneProduct(productId);
+        Product savedProduct = productRepository.findById(productId).get();
         if(savedProduct != null){
             if(productUpdateData.getName() != null){
                 savedProduct.setName(productUpdateData.getName());
